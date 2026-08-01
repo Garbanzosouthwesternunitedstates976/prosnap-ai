@@ -1,36 +1,41 @@
+// src/components/SettingsPanel.jsx
+
 import React, { useState, useEffect } from 'react';
 
 // Only image-generation models can enhance a photo. Chat models such as
 // gpt-4o read an image but reply with text, so they are not offered here.
+// Labels note the free-tier daily request cap, which is the limit users hit first.
 const PROVIDERS = {
-  Google: ['gemini-2.5-flash-image']
+  Google: [
+    { id: 'gemini-3.1-flash-image', label: 'Nano Banana 2 — best quality (1K/day)' },
+    { id: 'gemini-3.1-flash-lite-image', label: 'Nano Banana 2 Lite — fastest (1K/day)' },
+    { id: 'gemini-2.5-flash-image', label: 'Nano Banana — original (2K/day)' }
+  ]
 };
 
 export default function SettingsPanel({ onClose, onSave }) {
   const [provider, setProvider] = useState('Google');
   const [apiKey, setApiKey] = useState('');
-  const [model, setModel] = useState(PROVIDERS['Google'][0]);
+  const [model, setModel] = useState(PROVIDERS['Google'][0].id);
 
   useEffect(() => {
     const savedProvider = localStorage.getItem('prosnap_provider');
     const savedKey = localStorage.getItem('prosnap_apikey');
     const savedModel = localStorage.getItem('prosnap_model');
-    
+
     // Ignore stale provider/model values that are no longer supported.
     const activeProvider = savedProvider && PROVIDERS[savedProvider] ? savedProvider : 'Google';
+    const models = PROVIDERS[activeProvider];
+
     setProvider(activeProvider);
-    setModel(
-      savedModel && PROVIDERS[activeProvider].includes(savedModel)
-        ? savedModel
-        : PROVIDERS[activeProvider][0]
-    );
+    setModel(models.some((m) => m.id === savedModel) ? savedModel : models[0].id);
     if (savedKey) setApiKey(savedKey);
   }, []);
 
   const handleProviderChange = (e) => {
     const newProvider = e.target.value;
     setProvider(newProvider);
-    setModel(PROVIDERS[newProvider][0]);
+    setModel(PROVIDERS[newProvider][0].id);
   };
 
   const handleSave = () => {
@@ -83,8 +88,8 @@ export default function SettingsPanel({ onClose, onSave }) {
         <div className="form-group">
           <label>Model</label>
           <select value={model} onChange={(e) => setModel(e.target.value)} className="form-control">
-            {PROVIDERS[provider].map(m => (
-              <option key={m} value={m}>{m}</option>
+            {PROVIDERS[provider].map((m) => (
+              <option key={m.id} value={m.id}>{m.label}</option>
             ))}
           </select>
         </div>

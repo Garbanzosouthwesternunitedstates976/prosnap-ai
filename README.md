@@ -15,14 +15,16 @@ Live at **[seehiong.github.io/prosnap-ai](https://seehiong.github.io/prosnap-ai/
 ## Features
 
 - **Mobile-first capture** — take a photo directly from your phone's camera, or upload an existing one.
-- **Real AI image enhancement** via Gemini's image model:
-  - 💡 **Studio Lighting** — soft, even, professional lighting
+- **Real AI image enhancement** via Gemini's image models:
+  - 💡 **Studio Lighting** — three-point softbox lighting with a contact shadow
   - ✂️ **Clean Background** — seamless white e-commerce backdrop
   - ✨ **Enhance Quality** — sharpen, denoise, correct white balance
+  - 🏆 **Hero Shot** — reflective surface and dramatic lighting for a listing header
 - **Stackable** — apply one enhancement on top of another to refine the result.
+- **Hold to compare** — press and hold to see the original, so you can judge what actually changed.
 - **Download the result** — save the enhanced image straight to your phone, or revert to the original.
 
-Every enhancement prompt instructs the model to leave the product itself unchanged and alter only the lighting, background or image quality.
+Each prompt describes the finished photograph using real studio terminology and states that the product keeps its original shape, colour, materials, text and logos — only the lighting, background or image quality changes.
 
 ## Setup
 
@@ -38,10 +40,20 @@ npm run dev
 ```
 
 Open the `localhost` URL, click ⚙️ in the header, and paste your API key.
-
+npm installsince 
 ## How it works
 
 The app calls the Gemini `generateContent` endpoint with `responseModalities: ['IMAGE']`, sending your photo plus an editing prompt and receiving a new image back.
+
+Three models are selectable in Settings, all on Google's free tier:
+
+| Model | ID | Notes |
+|---|---|---|
+| Nano Banana 2 | `gemini-3.1-flash-image` | Default. Best quality, ~1K requests/day |
+| Nano Banana 2 Lite | `gemini-3.1-flash-lite-image` | Fastest, ~1K requests/day |
+| Nano Banana | `gemini-2.5-flash-image` | Previous generation, ~2K requests/day |
+
+Free-tier limits change and vary per account — check your own at [aistudio.google.com/rate-limit](https://aistudio.google.com/rate-limit).
 
 This detail matters if you plan to fork it: **ordinary vision models cannot do this.** Chat endpoints such as `gpt-4o` or the OpenRouter vision models accept an image but return *text* — a description of the photo, not an edited version. Image-to-image editing needs an image-generation model, which is why Google is the only provider offered.
 

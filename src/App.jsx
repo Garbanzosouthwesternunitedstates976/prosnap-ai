@@ -1,10 +1,17 @@
+// src/App.jsx
+
 import React, { useState, useEffect } from 'react';
 import CameraCapture from './components/CameraCapture';
 import AIAssistant from './components/AIAssistant';
 import SettingsPanel from './components/SettingsPanel';
 
 const DEFAULT_PROVIDER = 'Google';
-const DEFAULT_MODEL = 'gemini-2.5-flash-image';
+const DEFAULT_MODEL = 'gemini-3.1-flash-image';
+const SUPPORTED_MODELS = [
+  'gemini-3.1-flash-image',
+  'gemini-3.1-flash-lite-image',
+  'gemini-2.5-flash-image'
+];
 
 function App() {
   const [capturedImage, setCapturedImage] = useState(null);
@@ -16,12 +23,14 @@ function App() {
   });
 
   useEffect(() => {
-    // Only the API key is worth restoring; provider and model are currently fixed,
-    // so saved values from older versions are ignored rather than trusted.
+    // Restore the saved model only if it is still one we support, so values
+    // left over from older versions fall back instead of failing at call time.
+    const savedModel = localStorage.getItem('prosnap_model');
+
     setApiSettings({
       provider: DEFAULT_PROVIDER,
       apiKey: localStorage.getItem('prosnap_apikey') || '',
-      model: DEFAULT_MODEL
+      model: SUPPORTED_MODELS.includes(savedModel) ? savedModel : DEFAULT_MODEL
     });
   }, []);
 

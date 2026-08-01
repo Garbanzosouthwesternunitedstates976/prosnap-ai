@@ -1,3 +1,5 @@
+// src/services/ai-service.js
+
 // Image-to-image enhancement via Gemini's image generation model.
 //
 // Note: only Google is supported here. OpenAI/OpenRouter chat-completion

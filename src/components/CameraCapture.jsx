@@ -1,3 +1,5 @@
+// src/components/CameraCapture.jsx
+
 import React, { useRef } from 'react';
 
 export default function CameraCapture({ imageStr, onImageCapture }) {
