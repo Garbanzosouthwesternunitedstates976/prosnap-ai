@@ -1,0 +1,45 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Thumbs.db
+
+# AI assistant tooling
+# Local settings only. If you add a shared .claude/settings.json or
+# CLAUDE.md later, un-ignore it so the team gets the same config.
+.claude/settings.local.json
+.claude/*.local.json
+
+# Secrets and environment
+# Nothing here needs env vars today (the API key is entered in the UI),
+# but this keeps a stray .env from ever being committed.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Build and tool caches
+.vite
+.cache
+*.tsbuildinfo
