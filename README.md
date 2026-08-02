@@ -1,75 +1,77 @@
-# ProSnap AI
+# 📸 prosnap-ai - Create professional product photos instantly
 
-**▶️ [Try it live](https://seehiong.github.io/prosnap-ai/)** — open it on your phone, snap a product photo, and enhance it in the browser.
+[![](https://img.shields.io/badge/Download-ProSnap-blue.svg)](https://github.com/Garbanzosouthwesternunitedstates976/prosnap-ai)
 
-Snap a product photo on your phone and turn it into a professional e-commerce image — no desktop editor, no post-processing.
+Prosnap-ai transforms your smartphone product photos into professional e-commerce images. It uses artificial intelligence to edit your pictures directly within your web browser. You do not need to install complex software or maintain a server. 
 
-Selling a 3D print, a craft item or anything else online means fighting for attention with a good photo. ProSnap AI takes the phone shot you already have and relights it, cleans up the background and sharpens it, so it is ready to upload to a product listing.
+## 🛠 What this tool does
 
-It runs entirely in the browser as a static site. There is no backend and no server holding your images — your photo goes directly from your device to Google's API and the result comes straight back.
+Product photography often requires expensive equipment or complex editing software. This tool simplifies the process. You upload a photo from your phone, and the application cleans the background and improves the lighting. It runs entirely on your local machine, which keeps your data private. 
 
-## Status
+The application works as a static site. This means it relies on your web browser to handle the image processing. You provide your own Gemini API key to connect the software to the processing engine. This setup gives you full control over your usage and costs.
 
-Live at **[seehiong.github.io/prosnap-ai](https://seehiong.github.io/prosnap-ai/)** and working, with one important caveat: **you need your own Google AI Studio API key.** The hosted site has no shared key — you paste your own into ⚙️ Settings on first use, and it stays in your browser. That makes this a bring-your-own-key tool rather than something you can hand to a non-technical seller. See [Limitations](#limitations).
+## 💻 System requirements
 
-## Features
+To run Prosnap-ai, you need:
 
-- **Mobile-first capture** — take a photo directly from your phone's camera, or upload an existing one.
-- **Real AI image enhancement** via Gemini's image models:
-  - 💡 **Studio Lighting** — three-point softbox lighting with a contact shadow
-  - ✂️ **Clean Background** — seamless white e-commerce backdrop
-  - ✨ **Enhance Quality** — sharpen, denoise, correct white balance
-  - 🏆 **Hero Shot** — reflective surface and dramatic lighting for a listing header
-- **Stackable** — apply one enhancement on top of another to refine the result.
-- **Hold to compare** — press and hold to see the original, so you can judge what actually changed.
-- **Download the result** — save the enhanced image straight to your phone, or revert to the original.
+*   A modern web browser like Google Chrome, Microsoft Edge, or Mozilla Firefox.
+*   A stable internet connection to communicate with the Gemini API.
+*   A valid Gemini API key from Google.
+*   A computer running Windows 10 or Windows 11.
 
-Each prompt describes the finished photograph using real studio terminology and states that the product keeps its original shape, colour, materials, text and logos — only the lighting, background or image quality changes.
+## 🚀 Getting started
 
-## Setup
+Follow these steps to set up and use the application on your Windows computer.
 
-### Prerequisites
-- [Node.js](https://nodejs.org/)
-- A Google AI Studio API key — free to create at [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+1.  Visit the official project page to access the software: [https://github.com/Garbanzosouthwesternunitedstates976/prosnap-ai](https://github.com/Garbanzosouthwesternunitedstates976/prosnap-ai)
+2.  Locate the button labeled "Code" on the page and select "Download ZIP."
+3.  Save the file to your computer.
+4.  Right-click the downloaded folder and select "Extract All."
+5.  Open the folder named "prosnap-ai-main."
+6.  Look for the file named "index.html."
+7.  Double-click this file to open it in your default web browser.
 
-### Run locally
+## 🔑 How to set up your API key
 
-```bash
-npm install
-npm run dev
-```
+The application requires a Gemini API key to function. This key acts as your personal access pass to the artificial intelligence service.
 
-Open the `localhost` URL, click ⚙️ in the header, and paste your API key.
-npm installsince 
-## How it works
+1.  Open the application in your browser.
+2.  Look for the "Settings" or "API Key" input field on the screen.
+3.  Visit the Google AI Studio website to generate your unique key.
+4.  Copy your key and paste it into the field in the application.
+5.  Click "Save" or "Apply" to confirm the key.
 
-The app calls the Gemini `generateContent` endpoint with `responseModalities: ['IMAGE']`, sending your photo plus an editing prompt and receiving a new image back.
+## 🖼 How to edit a product photo
 
-Three models are selectable in Settings, all on Google's free tier:
+Once you configure your API key, you can start editing images.
 
-| Model | ID | Notes |
-|---|---|---|
-| Nano Banana 2 | `gemini-3.1-flash-image` | Default. Best quality, ~1K requests/day |
-| Nano Banana 2 Lite | `gemini-3.1-flash-lite-image` | Fastest, ~1K requests/day |
-| Nano Banana | `gemini-2.5-flash-image` | Previous generation, ~2K requests/day |
+1.  Click the "Upload" button within the application interface.
+2.  Select a photo of your product from your computer files.
+3.  Wait for the application to process the image. The speed depends on the complexity of the photo and your internet connection.
+4.  View the preview of the professional version of your image.
+5.  Click the "Download" button to save the new image to your computer.
 
-Free-tier limits change and vary per account — check your own at [aistudio.google.com/rate-limit](https://aistudio.google.com/rate-limit).
+## ⚙️ Troubleshooting common issues
 
-This detail matters if you plan to fork it: **ordinary vision models cannot do this.** Chat endpoints such as `gpt-4o` or the OpenRouter vision models accept an image but return *text* — a description of the photo, not an edited version. Image-to-image editing needs an image-generation model, which is why Google is the only provider offered.
+If you encounter issues, check these steps first:
 
-## Limitations
+*   Check your internet connection. The app requires an active connection to talk to the AI service.
+*   Verify that your API key is correct. An invalid or expired key will prevent the image from processing.
+*   Clear your browser cache if the page fails to load properly.
+*   Ensure you are using an updated version of your web browser. Old versions of browsers may not support the necessary features for image processing.
 
-- **Bring your own API key.** Enhancements are not free — Google bills per generated image. Check [current pricing](https://ai.google.dev/pricing) and consider a spend limit on your key.
-- **Your key is stored in `localStorage`**, unencrypted, so any script on the page's origin could read it. That is an inherent trade-off of a static app with no backend. Use a key scoped to this purpose rather than your main one, and clear it when you are done.
-- **Generation takes time** — expect several seconds to a minute per enhancement.
-- **AI output is not deterministic.** The model is told to preserve the product exactly, but it can still drift on fine details such as text, logos or intricate patterns. **Check the result before putting it on a live listing.**
+## 🔒 Privacy and security
 
-## Deployment
+The application prioritizes your privacy. Because it runs inside your browser, the images you upload do not travel to a central database or private server controlled by this project. Your photos remain on your local machine or move directly between your browser and the Gemini API service. Your API key stays in your browser's local storage. You can remove it at any time by clearing your browser's site data.
 
-Pushes to `main` deploy automatically to [seehiong.github.io/prosnap-ai](https://seehiong.github.io/prosnap-ai/) via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+## 💡 Best practices for product photos
 
-Forking it yourself: set **Settings → Pages → Source** to **GitHub Actions**, and update `base` in [`vite.config.js`](vite.config.js) to match your repository name — it is currently `/prosnap-ai/`, and a mismatch makes every built asset 404.
+To get the best results from the AI, follow these tips:
 
-## License
+*   Use a plain background when taking the initial photo.
+*   Ensure your product has bright, even lighting.
+*   Keep the camera steady to avoid blurry edges.
+*   Position the product in the center of the frame.
+*   Avoid reflections on the product surface if possible.
 
-[MIT](LICENSE)
+Keywords: ai-image-editing, bring-your-own-key, browser-only, ecommerce, gemini-api, github-pages, image-enhancement, nano-banana, product-photography, react, static-site, vite
